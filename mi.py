@@ -59,11 +59,11 @@ class MissileGuidanceSystem:
             self.current_position[2] + self.velocity[2]
         ]
 
-# Usage
+
 target = [1000, 500, 200]  # Target position
 missile = MissileGuidanceSystem(target)
 
-# Simulate guidance updates (in a loop or over time)
+
 for _ in range(10):
     missile.update_position()
     print("Current Position:", missile.current_position)
