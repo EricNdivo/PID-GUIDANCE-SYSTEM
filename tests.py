@@ -22,10 +22,10 @@ class TestMissileGuidanceSystem(unittest.TestCase):
         missile.update_position()
         new_position = missile.current_position
 
-        # Assert that position has changed from the initial position
+        
         self.assertNotEqual(new_position, initial_position)
 
-        # Add more assertions based on expected behavior
+        
 
 if __name__ == '__main__':
     unittest.main()
