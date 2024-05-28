@@ -16,7 +16,7 @@ class TestMissileGuidanceSystem(unittest.TestCase):
 
     def test_update_position(self):
         target = [1000, 500, 200]
-        missile = MissileGuidanceSystem(target)
+        missile = TestMissileGuidanceSystem(target)
         initial_position = missile.current_position.copy()
 
         missile.update_position()
