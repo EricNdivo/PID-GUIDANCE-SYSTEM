@@ -11,24 +11,19 @@ class MissileGuidanceSystem:
         self.acceleration = [0, 0, 0]
         self.integral_error = [0, 0, 0]
 
-        # Constants and gains
         self.Kp = 0.1
         self.Ki = 0.01
         self.Kd = 0.05
         self.prev_error = [0, 0, 0]
-
-        # Simulation parameters
         self.time_step = 0.1  
         self.target_reached_threshold = 1.0  
 
-        # Wind resistance 
         self.wind_velocity = [5, -3, 0]  
 
-        # Fuel and thrust parameters
         self.max_thrust = 10.0 
         self.fuel = 100.0  
         self.fuel_consumption_rate = 0.1 
-        # Visualization setup
+
         self.fig = plt.figure()
         self.ax = self.fig.add_subplot(111, projection='3d')
         self.ax.set_xlim([0, 1200])
@@ -57,7 +52,6 @@ class MissileGuidanceSystem:
 
         adjustment = [proportional[i] + integral[i] + derivative[i] for i in range(3)]
 
-        # Limit the acceleration to the available thrust
         total_adjustment_magnitude = math.sqrt(sum(a ** 2 for a in adjustment))
         if total_adjustment_magnitude > self.max_thrust:
             adjustment = [a / total_adjustment_magnitude * self.max_thrust for a in adjustment]
@@ -75,12 +69,9 @@ class MissileGuidanceSystem:
             self.current_position[i] + self.velocity[i] * self.time_step for i in range(3)
         ]
 
-        # Consume fuel
         self.fuel -= self.fuel_consumption_rate * self.time_step
         if self.fuel < 0:
             self.fuel = 0
-
-        # Store position for visualization
         self.positions.append(self.current_position.copy())
 
     def distance_to_target(self):
@@ -100,7 +91,7 @@ class MissileGuidanceSystem:
         plt.pause(0.01)
 
 def main():
-    target = [1000, 500, 200]  # Target position
+    target = [1000, 500, 200]  
     missile = MissileGuidanceSystem(target)
 
     while True:
